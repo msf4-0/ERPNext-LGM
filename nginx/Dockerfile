@@ -18,12 +18,14 @@ RUN /install_frappe ${FRAPPE_BRANCH} && \
   # /install_app <app_name> <repo> <app_branch>
   /install_app metabase_integration https://github.com/${GITHUB_OWNER}/ERPNext-Metabase-Integration master && \
   /install_app erpnext_telegram_integration https://github.com/${GITHUB_OWNER}/ERPNext-Telegram-Integration master && \
-  /install_app frepple https://github.com/${GITHUB_OWNER}/ERPNext-Frepple-Enhanced-Integration main && \
+  /install_app frepple https://github.com/seejayyy/ERPNext-Frepple-Enhanced-Integration-version1.3 main && \
   /install_app sql_accounting_software https://github.com/${GITHUB_OWNER}/ERPNext-SQL-Accounting-Integration main && \
   /install_app barcode_shrdc https://github.com/${GITHUB_OWNER}/ERPNext-Barcode-Integration master && \
   /install_app autocount https://github.com/${GITHUB_OWNER}/ERPNext-Autocount-Integration master && \
   /install_app short_courses https://github.com/Shakila-Sahira/ERPNext-Short-Courses && \
   /install_app shopify https://github.com/h-saurav1810/ERPNext-Shopify && \
+  /install_app superset https://github.com/HazreenZ/superset_erp && \
+  /install_app grafana https://github.com/seejayyy/ERPNext-Grafana && \
   /prepare_production
 
 FROM frappe/erpnext-nginx:${FRAPPE_BRANCH}
@@ -32,7 +34,7 @@ COPY --from=0 /home/frappe/frappe-bench/sites/ /var/www/html/
 COPY --from=0 /rsync /rsync
 
 # Append list of installed to apps.txt
-RUN echo -n "metabase_integration\nerpnext_telegram_integration\nbarcode_shrdc\nfrepple\nautocount\nsql_accounting_software\nshort_courses\nshopify" >> /var/www/html/apps.txt
+RUN echo -n "metabase_integration\nerpnext_telegram_integration\nbarcode_shrdc\nfrepple\nautocount\nsql_accounting_software\nshort_courses\nshopify\nsuperset\ngrafana" >> /var/www/html/apps.txt
 
 VOLUME [ "/assets" ]
 
