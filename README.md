@@ -80,7 +80,7 @@ In order to utilise the full integration between ERPNext and Frepple, you will n
     - [ERPNext Version 12](https://github.com/frappe/erpnext)
     - [Metabase Integration](https://github.com/chiajunshen/shrdc_frappe_metabase)
     - [Telegram Integration](https://github.com/chiajunshen/shrdc_erpnext_telegram)
-    - [Enhanced Frepple Integration](hhttps://github.com/seejayyy/ERPNext-Frepple-Enhanced-Integration-version1.3)
+    - [Enhanced Frepple Integration](https://github.com/seejayyy/ERPNext-Frepple-Enhanced-Integration-version1.3)
     - [Barcode Scanning System](https://github.com/leexy0/barcode_shrdc)
     - [Autocount](https://github.com/msf4-0/ERPNext-Autocount-Integration)
     - [SQL Account](https://github.com/msf4-0/ERPNext-SQL-Accounting-Integration)
