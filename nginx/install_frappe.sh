@@ -16,3 +16,5 @@ cd /home/frappe/frappe-bench/apps/frappe && yarn
 yarn production
 
 echo "rsync -a --delete /var/www/html/assets/frappe /assets" > /rsync
+
+
