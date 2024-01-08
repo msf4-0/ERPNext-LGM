@@ -1,4 +1,4 @@
-# Integrated Resource Planning System IRPS
+# ERPNext with LGM
 <a href="https://github.com/chiajunshen/shrdc_custom_frappe_docker/blob/master/LICENSE">
     <img alt="GitHub" src="https://img.shields.io/github/license/chiajunshen/shrdc_custom_frappe_docker.svg?color=blue">
 </a>
