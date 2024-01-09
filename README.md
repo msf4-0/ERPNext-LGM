@@ -1,4 +1,4 @@
-# Integrated Resource Planning System IRPS
+# ERPNext with LGM
 <a href="https://github.com/chiajunshen/shrdc_custom_frappe_docker/blob/master/LICENSE">
     <img alt="GitHub" src="https://img.shields.io/github/license/chiajunshen/shrdc_custom_frappe_docker.svg?color=blue">
 </a>
@@ -23,54 +23,9 @@
 
 <br>
 
-# Frepple Integration 
-![Frepple Integration](images/Frepple.png)
-
-<br>
-
-# Barcode Scanning System
-![Barcode Scanning System](images/Barcode%20Scanning%20System.png)
-
-<br>
-
-# Autocount
-![Autocount](images/Autocount.png)
-
-<br>
-
-# SQL Account
-![SQL Account](images/pic1.png)
-
-<br>
-
-# Short Courses
-![Short Courses](images/pic2.png)
-
-<br>
-
-# E-Commerce - Shopify
-![E-Commerce - Shopify](images/ecomshopify.png)
-
-<br>
-
-# Superset
-![Superset](images/suModule.png)
-
-<br>
-
-# Grafana
-Similar to Superset, another module that presents information through graphs and charts on Dashboards.
-
-<br>
-
-## For Frepple User
-In order to utilise the full integration between ERPNext and Frepple, you will need a running instance of Frepple software. To install Frepple software in both Windows and Linux refer to [this document](https://docs.google.com/document/d/1P4U1rZszydwy2LmVAuC4lvYPl-dFw86LSC8Fz8zRsIE/edit?usp=sharing).
-
-<br>
-
 ## For ERPNext User
 
-### 1. Integrated Resource Planning System IRPS
+### 1. ERPNext with LGM Modules
 1. Prerequisites:
     - Windows: Docker Desktop
     - Ubuntu: Docker Engine, Docker Compose
@@ -78,16 +33,6 @@ In order to utilise the full integration between ERPNext and Frepple, you will n
 
 2. The installation of this release includes the following:
     - [ERPNext Version 12](https://github.com/frappe/erpnext)
-    - [Metabase Integration](https://github.com/chiajunshen/shrdc_frappe_metabase)
-    - [Telegram Integration](https://github.com/chiajunshen/shrdc_erpnext_telegram)
-    - [Enhanced Frepple Integration](https://github.com/seejayyy/ERPNext-Frepple-Enhanced-Integration-version1.3)
-    - [Barcode Scanning System](https://github.com/leexy0/barcode_shrdc)
-    - [Autocount](https://github.com/msf4-0/ERPNext-Autocount-Integration)
-    - [SQL Account](https://github.com/msf4-0/ERPNext-SQL-Accounting-Integration)
-    - [Short Courses](https://github.com/Shakila-Sahira/ERPNext-Short-Courses)
-    - [E-Commerce - Shopify](https://github.com/h-saurav1810/ERPNext-Shopify)
-    - [Superset](https://github.com/HazreenZ/superset_erp)
-    - [Grafana](https://github.com/seejayyy/ERPNext-Grafana)
 
 3. For Windows & MacOS user, start from `Section 3`.
 4. For Ubuntu user, start from `Section 4`.
@@ -121,10 +66,10 @@ In order to utilise the full integration between ERPNext and Frepple, you will n
 ### 5. Setup
 
 1. Clone this repo.
-    - `git clone https://github.com/msf4-0/ERPNext-Lean4.0`
+    - `git clone https://github.com/msf4-0/ERPNext-LGM`
 
 2. Navigate to the cloned folder.
-    - `cd ERPNext-Lean4.0`
+    - `cd ERPNext-LGM`
 
 3. In `enx-example`, you can change the variables that would be used in this installation process to your preference such as the following:
     - Server port to host ERPNext,`ERPNEXT_SERVER_PORT`. Default is `8000`.
@@ -144,22 +89,11 @@ In order to utilise the full integration between ERPNext and Frepple, you will n
     - Replace `<project_name>` to your preference.
     - For example, `docker-compose -p project1 up -d`
 
-6. Monitor the site creation progress by logging into the `<project_name>-site-creator-1` container. To do this step, use this command `docker logs <project_name>-site-creator-1 -f`. 
-    
-    Note:
-    - Replace `<project_name>` to the same project name as in step 4.
-    - For example, `docker logs project1-site-creator-1 -f`.
-    - If you face `no such container` error, try with `docker logs project1-site-creator_1 -f` or `docker logs project1_site-creator_1 -f`.
+6. Monitor the site creation progress by logging into the `<project_name>_site-creator_1` container. To do this step, use this command `docker logs <project_name>_site-creator_1 -f`. 
 
-7. After the `<project_name>-site-creator-1` container display `Scheduler is disabled`, login to `<project_name>-erpnext-python-1` container. Use `docker exec -it --user root <project_name>-erpnext-python-1 /bin/bash` to login into this container as a root user.
+7. After the `<project_name>_site-creator_1` container display `Scheduler is disabled`, login to `<project_name>_erpnext-python_1` container. Use `docker exec -it --user root <project_name>_erpnext-python_1 /bin/bash` to login into this container as a root user.
     
-    Note:
-    - Replace `<project_name>` to the same project name selected in step 4.
-    - For example, `docker exec -it --user root project1-erpnext-python-1 /bin/bash`.
-    - If you face `no such container` error, try with `docker exec -it --user root project1-erpnext-python_1 /bin/bash` or `docker exec -it --user root project1_erpnext-python_1 /bin/bash`.
- 
- 
-8. Once you login in into `<project_name>-erpnext-python-1` container, by default, you will be in the `~:/home/frappe/frappe-bench/sites` directory. Navigate out to `~:/home/frappe/frappe-bench` directory by typing `cd ..`.
+8. Once you login in into `<project_name>_erpnext-python_1` container, by default, you will be in the `~:/home/frappe/frappe-bench/sites` directory. Navigate out to `~:/home/frappe/frappe-bench` directory by typing `cd ..`.
 
 9. Now, apply the new changes in Frepple app by running this command `bench --site <site_name> migrate`.
     
@@ -167,7 +101,7 @@ In order to utilise the full integration between ERPNext and Frepple, you will n
     - Replace `<site_name>` to the same name as specified in the .env file. Refer to step 3 and 4.
     - For example, `bench --site custom-erpnext-nginx migrate`
 
-10. After the process `Compiling Python files...` is finished, you will be back in the `~:/home/frappe/frappe-bench` directory. This means the `bench migrate` process is completed. Type `exit` to exit from `<project_name>-erpnext-python-1` container.
+10. After the process `Compiling Python files...` is finished, you will be back in the `~:/home/frappe/frappe-bench` directory. This means the `bench migrate` process is completed. Type `exit` to exit from `<project_name>_erpnext-python_1` container.
 
 11. Now, you can open any browser such as `Google Chrome` and access ERPNext via `http://localhost:<ERPNext_Server_Port>` or `http://<Your_IP_address>:<ERPNext_Server_Port>`.
     
@@ -180,20 +114,20 @@ In order to utilise the full integration between ERPNext and Frepple, you will n
     - Password: `admin`
 
 ### 6. Stopping Docker Containers
-1. To stop all the docker containers related to your `<peoject-name`> project:
-    - Open a Powershell terminal, navigate to `IRPS-Enhanced-Frepple-Integration` folder.
+1. To stop all the docker containers related to your `<project-name`> project:
+    - Open a Powershell terminal, navigate to `ERPNext-LGM` folder.
     - Run `docker-compose -p <project-name> stop`. 
     - For example, `docker-compose -p project1 stop`.
 
 ### 7. Starting Docker Containers
-1. To start up all the docker containers related to your `<peoject-name`> project:
-    - Open a Powershell terminal, navigate to `IRPS-Enhanced-Frepple-Integration` folder.
+1. To start up all the docker containers related to your `<project-name`> project:
+    - Open a Powershell terminal, navigate to `ERPNext-LGM` folder.
     - Run `docker-compose -p <project-name> start`. 
     - For example, `docker-compose -p project1 start`.
 
 ### 8. Deleting Docker Containers
-1. To remove all the docker containers related to your `<peoject-name`> project:
-    - Open a Powershell terminal, navigate to `IRPS-Enhanced-Frepple-Integration` folder.
+1. To remove all the docker containers related to your `<project-name`> project:
+    - Open a Powershell terminal, navigate to `ERPNext-LGM` folder.
     - Run `docker-compose -p <project-name> down` or run `docker-compose -p <project-name> down -v` to remove the related Docker Volume.
     - For example, `docker-compose -p project1 down -v`
 
@@ -291,10 +225,9 @@ When you face `denied: requested access to the resource is denied` when pushing 
 2. Copy `env-example` into `.env` by running `cp env-example .env`.
 
 ### 5. Start up
-1. The following commands should be executed on the `~/some/path/Integrated-Resource-Planning-System-IRPS` directory
+1. The following commands should be executed on the `~/some/path/ERPNext-LGM` directory
 2. `docker-compose -p <project_name> up -d`
 3. `docker logs <project_name>_site-creator_1 -f`
-    1. If you got a `no such container` error, you may need to change to `docker logs <project_name>-site-creator-1 -f`
 4. After the `site_creator` container exited, open a browser, you can access ERPNext on `localhost:8000` or `127.0.0.1:8000`.
 5. You can push the changes back to this repo (or your own repo if you forked one from this repo).
 
