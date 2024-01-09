@@ -18,8 +18,8 @@
 <br>
 
 # ERPNext Home Page
-![ERPNext Home Page](images/lgm.png)
-![](images/projects.png)
+![ERPNext Home Page](images/projects.png)
+![](images/lgm.png)
 
 <br>
 
