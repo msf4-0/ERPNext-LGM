@@ -89,11 +89,11 @@
     - Replace `<project_name>` to your preference.
     - For example, `docker-compose -p project1 up -d`
 
-6. Monitor the site creation progress by logging into the `<project_name>_site-creator_1` container. To do this step, use this command `docker logs <project_name>_site-creator_1 -f`. 
+6. Monitor the site creation progress by logging into the `<project_name>-site-creator-1` container. To do this step, use this command `docker logs <project_name>-site-creator-1 -f`. 
 
-7. After the `<project_name>_site-creator_1` container display `Scheduler is disabled`, login to `<project_name>_erpnext-python_1` container. Use `docker exec -it --user root <project_name>_erpnext-python_1 /bin/bash` to login into this container as a root user.
+7. After the `<project_name>-site-creator-1` container display `Scheduler is disabled`, login to `<project_name>-erpnext-python-1` container. Use `docker exec -it --user root <project_name>-erpnext-python-1 /bin/bash` to login into this container as a root user.
     
-8. Once you login in into `<project_name>_erpnext-python_1` container, by default, you will be in the `~:/home/frappe/frappe-bench/sites` directory. Navigate out to `~:/home/frappe/frappe-bench` directory by typing `cd ..`.
+8. Once you login in into `<project_name>-erpnext-python-1` container, by default, you will be in the `~:/home/frappe/frappe-bench/sites` directory. Navigate out to `~:/home/frappe/frappe-bench` directory by typing `cd ..`.
 
 9. Now, apply the new changes in Frepple app by running this command `bench --site <site_name> migrate`.
     
@@ -101,7 +101,7 @@
     - Replace `<site_name>` to the same name as specified in the .env file. Refer to step 3 and 4.
     - For example, `bench --site custom-erpnext-nginx migrate`
 
-10. After the process `Compiling Python files...` is finished, you will be back in the `~:/home/frappe/frappe-bench` directory. This means the `bench migrate` process is completed. Type `exit` to exit from `<project_name>_erpnext-python_1` container.
+10. After the process `Compiling Python files...` is finished, you will be back in the `~:/home/frappe/frappe-bench` directory. This means the `bench migrate` process is completed. Type `exit` to exit from `<project_name>-erpnext-python-1` container.
 
 11. Now, you can open any browser such as `Google Chrome` and access ERPNext via `http://localhost:<ERPNext_Server_Port>` or `http://<Your_IP_address>:<ERPNext_Server_Port>`.
     
