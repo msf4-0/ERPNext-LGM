@@ -14,7 +14,7 @@ RUN /install_frappe ${FRAPPE_BRANCH} && \
   #/install_erpnext && \
   # Install required apps with following command
   # /install_app <app_name> <repo> <app_branch>
-  /install_app erpnext https://github.com/seejayyy/ERPNext-LGM main && \
+  /install_app erpnext https://github.com/msf4-0/ERPNext-LGM-Code main && \
   /prepare_production
 
 FROM frappe/erpnext-nginx:${FRAPPE_BRANCH}

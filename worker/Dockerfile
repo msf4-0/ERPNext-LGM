@@ -8,4 +8,4 @@ COPY remove_erp.sh /remove_erp
 
 RUN /remove_erp
 
-RUN install_app erpnext https://github.com/seejayyy/ERPNext-LGM main
+RUN install_app erpnext https://github.com/msf4-0/ERPNext-LGM-Code main
