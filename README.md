@@ -26,7 +26,9 @@
 ## For ERPNext User
 
 ### Workflow Guide
-Please refer to this repository's Wiki: https://github.com/msf4-0/ERPNext-LGM/wiki
+Please refer to this repository's Wiki: https://github.com/msf4-0/ERPNext-LGM/wiki.
+
+Disclaimer: The workflow in this Wiki is based off the newer version from the production repository, which has not been built as a Docker image yet due to undergoing development. To access this version, please download the production repository and mount the files into the Docker container.
 
 ### 1. ERPNext with LGM Modules
 1. Prerequisites:
