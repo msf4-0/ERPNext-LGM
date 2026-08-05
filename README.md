@@ -155,11 +155,11 @@ Please refer to this repository's Wiki: https://github.com/msf4-0/ERPNext-LGM/wi
 
 <br>
 
-## For Developer
+## For Developers
 - [Reference: Customizing your own shrdc custom frappe docker](https://docs.google.com/document/d/1XxOYM_qhZ0RGI60YM82XHOkEzrn8ywXC98i354Donjc/edit?usp=sharing)
 
 ### Important Details
-This is a deployment repository, and doesn't contain any code for ERPNext LGM. The production repository with code is here: https://github.com/msf4-0/ERPNext-LGM-Code.
+This is a deployment repository - It only contains files needed for Docker deployment, not code for ERPNext LGM. The production repository with code is here: https://github.com/msf4-0/ERPNext-LGM-Code.
 
 ### 1. Introduction
 
