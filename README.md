@@ -167,9 +167,11 @@ Disclaimer: The workflow in this Wiki is based off the newer version from the pr
 ### 1. Cloning
 - Clone the production repository (link at the top of document) into the same parent folder as this repository. It should look like this:
 
+```
 parent_folder
 |-> erpnext_lgm (current repository folder)
 |-> erpnext_lgm_code (production repository folder)
+```
 
 If you can't keep both in the same parent folder, it is still possible to run, but you need to update the "PROD_REPO_PATH" relative path in the .env file later to point to your production repository folder.
 
