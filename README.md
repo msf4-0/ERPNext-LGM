@@ -183,8 +183,8 @@ To mount the production repository folder, an override .yml file is provided as 
 
 To use the convenience scripts, just call the corresponding one for your operating system, and then add the Docker compose arguments you need, for example:
 
-- `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d` → `dev.cmd up -d`
-- `docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v` → `dev.cmd down -v`
+- `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d` → `.\dev.cmd up -d`
+- `docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v` → `.\dev.cmd down -v`
 
 ## For Developers - Creating your own Docker Image
 - [Reference: Customizing your own shrdc custom frappe docker](https://docs.google.com/document/d/1XxOYM_qhZ0RGI60YM82XHOkEzrn8ywXC98i354Donjc/edit?usp=sharing)
