@@ -12,3 +12,4 @@ ENTRYPOINT_LABEL=traefik.http.routers.excel-erpnext-nginx.entrypoints=web
 DOCKER_USERNAME=seejayyy
 ERPNEXT_SERVER_PORT=8000
 MARIADB_SERVER_PORT=3306
+PROD_REPO_PATH=../ERPNext-LGM-Code

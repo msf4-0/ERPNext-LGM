@@ -1,0 +1,49 @@
+# ERPNext-LGM/docker-compose.dev.yml
+#
+# NOT auto-loaded by `docker compose up` — must be explicitly included with -f,
+# or via ./dev.sh. This is intentional: it keeps non-developer users unaffected
+# and mounts the live ERPNext-LGM-Code repo into the containers that run it.
+#
+# Requires Docker Compose v2 CLI (`docker compose version`) for the long-form
+# bind syntax below.
+
+services:
+  erpnext-python:
+    volumes:
+      - type: bind
+        source: ${PROD_REPO_PATH}
+        target: /home/frappe/frappe-bench/apps/erpnext
+        bind:
+          create_host_path: false
+
+  custom-erpnext-worker-default:
+    volumes:
+      - type: bind
+        source: ${PROD_REPO_PATH}
+        target: /home/frappe/frappe-bench/apps/erpnext
+        bind:
+          create_host_path: false
+
+  custom-erpnext-worker-short:
+    volumes:
+      - type: bind
+        source: ${PROD_REPO_PATH}
+        target: /home/frappe/frappe-bench/apps/erpnext
+        bind:
+          create_host_path: false
+
+  custom-erpnext-worker-long:
+    volumes:
+      - type: bind
+        source: ${PROD_REPO_PATH}
+        target: /home/frappe/frappe-bench/apps/erpnext
+        bind:
+          create_host_path: false
+
+  erpnext-schedule:
+    volumes:
+      - type: bind
+        source: ${PROD_REPO_PATH}
+        target: /home/frappe/frappe-bench/apps/erpnext
+        bind:
+          create_host_path: false
