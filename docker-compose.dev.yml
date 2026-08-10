@@ -47,3 +47,11 @@ services:
         target: /home/frappe/frappe-bench/apps/erpnext
         bind:
           create_host_path: false
+
+  site-creator:
+    volumes:
+      - type: bind
+        source: ${PROD_REPO_PATH}
+        target: /home/frappe/frappe-bench/apps/erpnext
+        bind:
+          create_host_path: false
