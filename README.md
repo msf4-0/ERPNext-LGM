@@ -22,18 +22,19 @@
 ![](images/lgm.png)
 
 <br>
-
 ## Important Details
-This is a deployment repository - It only contains files needed for Docker deployment, not code for ERPNext LGM. The production repository with code is here: https://github.com/msf4-0/ERPNext-LGM-Code.
+This is a deployment repository - It only contains files needed for Docker deployment, not code for ERPNext LGM. In other words, this repository is what allows you to run ERPNext LGM, but the code isn't kept here.
 
-For how to mount the production repository's version into the system, please refer to the "For ERPNext Developers" section below.
+The production repository with code is here: https://github.com/msf4-0/ERPNext-LGM-Code.
+
+For how to mount the production repository's version into the system, please refer to the "For Developers" section below.
 
 ## For ERPNext User
 
 ### Workflow Guide
-Please refer to this repository's Wiki: https://github.com/msf4-0/ERPNext-LGM/wiki.
+Please refer to this repository's Wiki (deprecated): https://github.com/msf4-0/ERPNext-LGM/wiki.
 
-Disclaimer: The workflow in this Wiki is based off the newer version from the production repository, which has not been built as a Docker image yet due to undergoing development. To access this version, please download the production repository (link in the Developer section below) and mount the files into the Docker container.
+IMPORTANT: Do not fully follow the Wiki above, as it is based on a version that was halfway through an overhaul, and has since been deprecated. Many features and instructions there may no longer apply to the current version.
 
 ### 1. ERPNext with LGM Modules
 1. Prerequisites:
