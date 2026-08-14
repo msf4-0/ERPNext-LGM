@@ -1,4 +1,4 @@
-ARG FRAPPE_BRANCH=develop
+ARG FRAPPE_BRANCH=version-12
 FROM node:14-buster
 
 ARG GITHUB_OWNER=msf4-0 			# you could give a default value as well
@@ -14,12 +14,12 @@ RUN /install_frappe ${FRAPPE_BRANCH} && \
   #/install_erpnext && \
   # Install required apps with following command
   # /install_app <app_name> <repo> <app_branch>
-  /install_app erpnext https://github.com/msf4-0/ERPNext-LGM-Code main && \
+  /install_app erpnext https://github.com/${GITHUB_OWNER}/ERPNext-LGM-Code main && \
   /prepare_production
 
 FROM frappe/erpnext-nginx:${FRAPPE_BRANCH}
 
-COPY --from=0 /home/frappe/frappe-bench/sites/ /var/www/html/
+COPY --from=0 --chown=nginx:nginx /home/frappe/frappe-bench/sites /var/www/html/sites
 COPY --from=0 /rsync /rsync
 
 # Append list of installed to apps.txt
