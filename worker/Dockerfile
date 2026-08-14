@@ -1,4 +1,4 @@
-ARG FRAPPE_BRANCH=develop
+ARG FRAPPE_BRANCH=version-12
 FROM frappe/erpnext-worker:${FRAPPE_BRANCH}
 
 ARG GITHUB_OWNER=msf4-0 			# you could give a default value as well
