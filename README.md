@@ -23,6 +23,11 @@
 
 <br>
 
+## Important Details
+This is a deployment repository - It only contains files needed for Docker deployment, not code for ERPNext LGM. In other words, this repository is what allows you to run ERPNext LGM, but the code isn't kept here.
+
+The production repository with code is here: https://github.com/msf4-0/ERPNext-LGM-Code.
+
 ## For ERPNext User
 
 ### Workflow Guide
