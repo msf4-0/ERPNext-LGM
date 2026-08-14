@@ -22,11 +22,12 @@
 ![](images/lgm.png)
 
 <br>
-
 ## Important Details
 This is a deployment repository - It only contains files needed for Docker deployment, not code for ERPNext LGM. In other words, this repository is what allows you to run ERPNext LGM, but the code isn't kept here.
 
 The production repository with code is here: https://github.com/msf4-0/ERPNext-LGM-Code.
+
+For how to mount the production repository's version into the system, please refer to the "For Developers" section below.
 
 ## For ERPNext User
 
@@ -162,7 +163,31 @@ IMPORTANT: Do not fully follow the Wiki above, as it is based on a version that 
 
 <br>
 
-## For Developers
+## For Developers - Mounting code from production repository
+
+### 1. Cloning
+Clone the production repository (link at the top of document) into the same parent folder as this repository. It should look like this:
+
+```
+parent_folder
+|-> erpnext_lgm (current repository folder)
+|-> erpnext_lgm_code (production repository folder)
+```
+
+If you can't keep both in the same parent folder, it is still possible to run, but you need to update the "PROD_REPO_PATH" relative path in the .env file later to point to your production repository folder.
+
+### 2. Set up
+Copy the env-example file as .env, and change the environment variables if desired.
+
+### 3. Run
+To mount the production repository folder, an override .yml file is provided as "docker-compose.dev.yml". You can either run `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d`, or use the provided scripts "dev.cmd" (for Windows), or "dev.sh" (for Linux) for convenience.
+
+To use the convenience scripts, just call the corresponding one for your operating system, and then add the Docker compose arguments you need, for example:
+
+- `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d` → `.\dev.cmd up -d`
+- `docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v` → `.\dev.cmd down -v`
+
+## For Developers - Creating your own Docker Image
 - [Reference: Customizing your own shrdc custom frappe docker](https://docs.google.com/document/d/1XxOYM_qhZ0RGI60YM82XHOkEzrn8ywXC98i354Donjc/edit?usp=sharing)
 
 ### 1. Introduction
