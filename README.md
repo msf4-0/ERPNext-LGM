@@ -31,9 +31,9 @@ The production repository with code is here: https://github.com/msf4-0/ERPNext-L
 ## For ERPNext User
 
 ### Workflow Guide
-Please refer to this repository's Wiki: https://github.com/msf4-0/ERPNext-LGM/wiki.
+Please refer to this repository's Wiki (deprecated): https://github.com/msf4-0/ERPNext-LGM/wiki.
 
-Disclaimer: The workflow in this Wiki is based off the newer version from the production repository, which has not been built as a Docker image yet due to undergoing development. To access this version, please download the production repository (link in the Developer section below) and mount the files into the Docker container.
+IMPORTANT: Do not fully follow the Wiki above, as it is based on a version that was halfway through an overhaul, and has since been deprecated. Many features and instructions there may no longer apply to the current version.
 
 ### 1. ERPNext with LGM Modules
 1. Prerequisites:
@@ -164,9 +164,6 @@ Disclaimer: The workflow in this Wiki is based off the newer version from the pr
 
 ## For Developers
 - [Reference: Customizing your own shrdc custom frappe docker](https://docs.google.com/document/d/1XxOYM_qhZ0RGI60YM82XHOkEzrn8ywXC98i354Donjc/edit?usp=sharing)
-
-### Important Details
-This is a deployment repository - It only contains files needed for Docker deployment, not code for ERPNext LGM. The production repository with code is here: https://github.com/msf4-0/ERPNext-LGM-Code.
 
 ### 1. Introduction
 
