@@ -36,6 +36,8 @@ services:
       frappe-socketio:
         condition: service_started
         restart: true
+      site-creator:
+        condition: service_completed_successfully
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.custom-erpnext-nginx.rule=Host(${SITES})"
@@ -67,7 +69,10 @@ services:
     image: frappe/frappe-socketio:${FRAPPE_VERSION}
     restart: on-failure
     depends_on:
-      - redis-socketio
+      redis-socketio:
+        condition: service_started
+      site-creator:
+        condition: service_completed_successfully
     volumes:
       - sites-vol:/home/frappe/frappe-bench/sites:rw
 
@@ -76,8 +81,12 @@ services:
     restart: on-failure
     command: worker
     depends_on:
-      - redis-queue
-      - redis-cache
+      redis-queue:
+        condition: service_started
+      redis-cache:
+        condition: service_started
+      site-creator:
+        condition: service_completed_successfully
     volumes:
       - sites-vol:/home/frappe/frappe-bench/sites:rw
 
@@ -88,8 +97,12 @@ services:
     environment:
       - WORKER_TYPE=short
     depends_on:
-      - redis-queue
-      - redis-cache
+      redis-queue:
+        condition: service_started
+      redis-cache:
+        condition: service_started
+      site-creator:
+        condition: service_completed_successfully
     volumes:
       - sites-vol:/home/frappe/frappe-bench/sites:rw
 
@@ -100,8 +113,12 @@ services:
     environment:
       - WORKER_TYPE=long
     depends_on:
-      - redis-queue
-      - redis-cache
+      redis-queue:
+        condition: service_started
+      redis-cache:
+        condition: service_started
+      site-creator:
+        condition: service_completed_successfully
     volumes:
       - sites-vol:/home/frappe/frappe-bench/sites:rw
 
@@ -110,8 +127,12 @@ services:
     restart: on-failure
     command: schedule
     depends_on:
-      - redis-queue
-      - redis-cache
+      redis-queue:
+        condition: service_started
+      redis-cache:
+        condition: service_started
+      site-creator:
+        condition: service_completed_successfully
     volumes:
       - sites-vol:/home/frappe/frappe-bench/sites:rw
 
