@@ -180,12 +180,16 @@ If you can't keep both in the same parent folder, it is still possible to run, b
 Copy the env-example file as .env, and change the environment variables if desired.
 
 ### 3. Run
-To mount the production repository folder, an override .yml file is provided as "docker-compose.dev.yml". You can either run `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d`, or use the provided scripts "dev.cmd" (for Windows), or "dev.sh" (for Linux) for convenience.
+To mount the production repository folder, an override .yml file is provided as "docker-compose.dev.yml". You can either run `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d`, or use the provided scripts "dev.cmd" (for Windows), or "dev.sh" (for Linux) for convenience. 
 
-To use the convenience scripts, just call the corresponding one for your operating system, and then add the Docker compose arguments you need, for example:
+However, please ensure you inspect the scripts before running them, especially when pulling new commits from this repository. Ensure you understand what the scripts do before running them for security reasons.
+
+To use the convenience scripts, just call the corresponding script for your operating system, and then add the Docker compose arguments you need, for example:
 
 - `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d` → `.\dev.cmd up -d`
 - `docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v` → `.\dev.cmd down -v`
+
+However, these convenience scripts also have a "setup" option which automatically enables developer mode and runs `bench migrate` automatically. It is highly recommended to use this instead of `docker compose up` to ensure that changes made to the code show up every time the container is created, and for Doctype schema changes to show up as .json files. To run it, replace the Docker compose argument with `setup`, i.e. `.\dev.cmd setup`.
 
 ## For Developers - Creating your own Docker Image
 - [Reference: Customizing your own shrdc custom frappe docker](https://docs.google.com/document/d/1XxOYM_qhZ0RGI60YM82XHOkEzrn8ywXC98i354Donjc/edit?usp=sharing)
