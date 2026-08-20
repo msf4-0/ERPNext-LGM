@@ -22,6 +22,7 @@
 ![](images/lgm.png)
 
 <br>
+
 ## Important Details
 This is a deployment repository - It only contains files needed for Docker deployment, not code for ERPNext LGM. In other words, this repository is what allows you to run ERPNext LGM, but the code isn't kept here.
 
