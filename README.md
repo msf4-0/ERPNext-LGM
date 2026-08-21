@@ -190,7 +190,43 @@ To use the convenience scripts, just call the corresponding script for your oper
 - `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d` → `.\dev.cmd up -d`
 - `docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v` → `.\dev.cmd down -v`
 
-However, these convenience scripts also have a "setup" option which automatically enables developer mode and runs `bench migrate` automatically. It is highly recommended to use this instead of `docker compose up` to ensure that changes made to the code show up every time the container is created, and for Doctype schema changes to show up as .json files. To run it, replace the Docker compose argument with `setup`, i.e. `.\dev.cmd setup`.
+However, these convenience scripts also have a "setup" option which automatically enables developer mode and runs `bench migrate` automatically. It is highly recommended to use this instead of `docker compose up` to ensure that changes made to the code show up every time the container is created, and for Doctype schema changes to show up as .json files. To run it, replace the Docker compose argument with `setup`, i.e. :
+`.\dev.cmd setup`.
+
+### Finding the name of the backend container (Default: `erpnext-lgm-erpnext-python-1`)
+1) Find the name of your backend service. This can be found in your Docker .compose file (not .dev.compose). If you did not change your compose file, it should be `erpnext-python`. Look for the service that contains the following parameter: `image: ${DOCKER_USERNAME}/custom-erpnext-worker:${ERPNEXT_VERSION}`, and contains the the following line under its `environment` field: 
+    `environment:`
+      `- MARIADB_HOST=${MARIADB_HOST}`
+2) Find the name of your process. If you started your Docker compose without the -p flag, it should be `erpnext-lgm` by default.
+3) Ensure that your ERPNext system is up and running. With both the backend name from 1) and the process name from 2), open your computer's terminal and type `docker ps` to list all running Docker containers. Under the `NAMES` column, look for a name that starts with this: `<PROCESS NAME>-<SERVICE NAME>`. The container name that starts with this name is the backend container.
+
+   For example, the default process name is `erpnext-lgm` and the default process name is `erpnext-python`, so combined they are `erpnext-lgm-erpnext-python`. The only container that starts with this name is `erpnext-lgm-erpnext-python-1`. Thus, `erpnext-lgm-erpnext-python-1` is the name of the backend container.
+
+### Finding the name of the site (Default: `custom-erpnext-nginx`)
+1) Access the backend bash terminal using the method below.
+2) Run `cd ~/frappe-bench/sites`
+3) Run `ls -d */`
+4) From the options listed, if you didn't create a new site before this, there should be only 2 options listed in blue - each one represents a folder. Look for the folder that isn't named "assets", that is the name of the site. For example, by default, only `assets` and `custom-erpnext-nginx` will be shown - `custom-erpnext-nginx` is the name of the site.
+
+### Accessing the backend bash terminal / bench console
+- Backend bash terminal → run `docker exec -it <BACKEND CONTAINER NAME> bash`. Since the default backend container name is `erpnext-lgm-erpnext-python-1`, the default command would be `docker exec -it erpnext-lgm-erpnext-python-1 bash`.
+- Bench console -> Access the backend bash terminal using the method above first, then run `bench --site <SITE NAME> console`. Since the default site name is `custom-erpnext-nginx`, the default command would be `bench --site custom-erpnext-nginx console`.
+
+To exit from either terminal, just run `exit`.
+
+### Reflecting latest changes
+There are 3 main types of changes, backend changes (.py or config.json files), database/Doctype schema changes (.json files), and frontend changes (.js files).
+- Backend changes -> Restart the container using `./dev.cmd restart`
+- Database/Doctype schema changes -> `.\dev.cmd exec erpnext-python bench --site all migrate` (replace erpnext-python with backend service name defined in the Docker compose file if changed)
+- Frontend changes -> Normally requires bench build, but first try the following steps, and if one doesn't work, try the next:
+    1) Clear the cache by running `ctrl + shift + r` in the web browser
+    2) Open the bench console using the method mentioned earlier, then run
+       `frappe.reload_doc("projects", "doctype", "<DOCTYPE_NAME>", force=True)`
+       `frappe.db.commit()`
+
+       For example, to refresh the `ingredients_weighing_table_lgm` Doctype, run:
+       `frappe.reload_doc("projects", "doctype", "ingredients_weighing_table_lgm", force=True)`
+       `frappe.db.commit()`
 
 ## For Developers - Creating your own Docker Image
 - [Reference: Customizing your own shrdc custom frappe docker](https://docs.google.com/document/d/1XxOYM_qhZ0RGI60YM82XHOkEzrn8ywXC98i354Donjc/edit?usp=sharing)
