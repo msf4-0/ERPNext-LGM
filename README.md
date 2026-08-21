@@ -83,7 +83,7 @@ IMPORTANT: Do not fully follow the Wiki above, as it is based on a version that 
 2. Navigate to the cloned folder.
     - `cd ERPNext-LGM`
 
-3. In `enx-example`, you can change the variables that would be used in this installation process to your preference such as the following:
+3. In `env-example`, you can change the variables that would be used in this installation process to your preference such as the following:
     - Server port to host ERPNext,`ERPNEXT_SERVER_PORT`. Default is `8000`.
     - Database port,`MARIADB_SERVER_PORT`. Default is `3306`.
     - Site name `SITE_NAME`. Default is `custom-erpnext-nginx`.
@@ -95,53 +95,55 @@ IMPORTANT: Do not fully follow the Wiki above, as it is based on a version that 
 
 4. Copy environment variables from the `env-example` file into `.env` file using this command `cp env-example .env`.
 
-5. Start all the docker containers by this command `docker-compose -p <project_name> up -d`.
+5. Start all the docker containers by this command `docker compose -p <project_name> up -d`.
     
     Note: 
     - Replace `<project_name>` to your preference.
-    - For example, `docker-compose -p project1 up -d`
+    - For example, `docker compose -p project1 up -d`
 
-6. Monitor the site creation progress by logging into the `<project_name>-site-creator-1` container. To do this step, use this command `docker logs <project_name>-site-creator-1 -f`. 
+6. Monitor the site creation progress by logging into the `<project_name>-site-creator-1` container. To do this step, use this command `docker logs <project_name>-site-creator-1 -f`. The site creation process might take up to 5 minutes - This is normal.
 
-7. After the `<project_name>-site-creator-1` container display `Scheduler is disabled`, login to `<project_name>-erpnext-python-1` container. Use `docker exec -it --user root <project_name>-erpnext-python-1 /bin/bash` to login into this container as a root user.
+- If the site creator container seems to be stuck in a restarting loop, or is still not ready after a while, consider running `docker compose down` then `docker compose up -d` again. If the error still persists, run `docker compose down -v` instead. IMPORTANT: This will wipe the container's volumes, including any data stored inside the container.
+
+9. After the `<project_name>-site-creator-1` container display `Scheduler is disabled`, login to `<project_name>-erpnext-python-1` container. Use `docker exec -it --user root <project_name>-erpnext-python-1 /bin/bash` to login into this container as a root user.
     
-8. Once you login in into `<project_name>-erpnext-python-1` container, by default, you will be in the `~:/home/frappe/frappe-bench/sites` directory. Navigate out to `~:/home/frappe/frappe-bench` directory by typing `cd ..`.
+10. Once you login in into `<project_name>-erpnext-python-1` container, by default, you will be in the `~:/home/frappe/frappe-bench/sites` directory. Navigate out to `~:/home/frappe/frappe-bench` directory by typing `cd ..`.
 
-9. Now, apply the new changes in Frepple app by running this command `bench --site <site_name> migrate`.
+11. Now, apply the new changes in Frepple app by running this command `bench --site <site_name> migrate`.
     
     Note:
     - Replace `<site_name>` to the same name as specified in the .env file. Refer to step 3 and 4.
     - For example, `bench --site custom-erpnext-nginx migrate`
 
-10. After the process `Compiling Python files...` is finished, you will be back in the `~:/home/frappe/frappe-bench` directory. This means the `bench migrate` process is completed. Type `exit` to exit from `<project_name>-erpnext-python-1` container.
+12. After the process `Compiling Python files...` is finished, you will be back in the `~:/home/frappe/frappe-bench` directory. This means the `bench migrate` process is completed. Type `exit` to exit from `<project_name>-erpnext-python-1` container.
 
-11. Now, you can open any browser such as `Google Chrome` and access ERPNext via `http://localhost:<ERPNext_Server_Port>` or `http://<Your_IP_address>:<ERPNext_Server_Port>`.
+13. Now, you can open any browser such as `Google Chrome` and access ERPNext via `http://localhost:<ERPNext_Server_Port>` or `http://<Your_IP_address>:<ERPNext_Server_Port>`.
     
     Note:
     - Type the selected ERPNext port number in `<ERPNext_Server_Port>` selected in step 4. 
     - For example, `http://localhost:8000` or `http://127.0.0.1:8000`.
 
-12. Default credentials.
+14. Default credentials.
     - Username: `Administrator`
     - Password: `admin`
 
 ### 6. Stopping Docker Containers
 1. To stop all the docker containers related to your `<project-name`> project:
     - Open a Powershell terminal, navigate to `ERPNext-LGM` folder.
-    - Run `docker-compose -p <project-name> stop`. 
-    - For example, `docker-compose -p project1 stop`.
+    - Run `docker compose -p <project-name> stop`. 
+    - For example, `docker compose -p project1 stop`.
 
 ### 7. Starting Docker Containers
 1. To start up all the docker containers related to your `<project-name`> project:
     - Open a Powershell terminal, navigate to `ERPNext-LGM` folder.
-    - Run `docker-compose -p <project-name> start`. 
-    - For example, `docker-compose -p project1 start`.
+    - Run `docker compose -p <project-name> start`. 
+    - For example, `docker compose -p project1 start`.
 
 ### 8. Deleting Docker Containers
 1. To remove all the docker containers related to your `<project-name`> project:
     - Open a Powershell terminal, navigate to `ERPNext-LGM` folder.
-    - Run `docker-compose -p <project-name> down` or run `docker-compose -p <project-name> down -v` to remove the related Docker Volume.
-    - For example, `docker-compose -p project1 down -v`
+    - Run `docker compose -p <project-name> down` or run `docker compose -p <project-name> down -v` to remove the related Docker Volume.
+    - For example, `docker compose -p project1 down -v`
 
 ## Update Custom App
 1. Assumptions:
@@ -181,26 +183,26 @@ If you can't keep both in the same parent folder, it is still possible to run, b
 Copy the env-example file as .env, and change the environment variables if desired.
 
 ### 3. Run
-To mount the production repository folder, an override .yml file is provided as "docker-compose.dev.yml". You can either run `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d`, or use the provided scripts "dev.cmd" (for Windows), or "dev.sh" (for Linux) for convenience. 
+To mount the production repository folder, an override .yml file is provided as "docker compose.dev.yml". You can either run `docker compose -f docker compose.yml -f docker compose.dev.yml up -d`, or use the provided scripts "dev.cmd" (for Windows), or "dev.sh" (for Linux) for convenience. 
 
 However, please ensure you inspect the scripts before running them, especially when pulling new commits from this repository. Ensure you understand what the scripts do before running them for security reasons.
 
 To use the convenience scripts, just call the corresponding script for your operating system, and then add the Docker compose arguments you need, for example:
 
-- `docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d` → `.\dev.cmd up -d`
-- `docker compose -f docker-compose.yml -f docker-compose.dev.yml down -v` → `.\dev.cmd down -v`
+- `docker compose -f docker compose.yml -f docker compose.dev.yml up -d` → `.\dev.cmd up -d`
+- `docker compose -f docker compose.yml -f docker compose.dev.yml down -v` → `.\dev.cmd down -v`
 
 However, these convenience scripts also have a "setup" option which automatically enables developer mode and runs `bench migrate` automatically. It is highly recommended to use this instead of `docker compose up` to ensure that changes made to the code show up every time the container is created, and for Doctype schema changes to show up as .json files. To run it, replace the Docker compose argument with `setup`, i.e. :
 `.\dev.cmd setup`.
 
 ### Finding the name of the backend container (Default: `erpnext-lgm-erpnext-python-1`)
-1) Find the name of your backend service. This can be found in your Docker .compose file (not .dev.compose). If you did not change your compose file, it should be `erpnext-python`. Look for the service that contains the following parameter: `image: ${DOCKER_USERNAME}/custom-erpnext-worker:${ERPNEXT_VERSION}`, and contains the the following line under its `environment` field: 
-    `environment:`
+1) Find the name of your backend service. This can be found in your Docker .compose file (not .dev.compose). If you did not change your compose file, it should be `erpnext-python`. Look for the service that contains the following parameter: `image: ${DOCKER_USERNAME}/custom-erpnext-worker:${ERPNEXT_VERSION}`, and contains the the following line under its `environment` field:\
+    `environment:`\
       `- MARIADB_HOST=${MARIADB_HOST}`
 2) Find the name of your process. If you started your Docker compose without the -p flag, it should be `erpnext-lgm` by default.
 3) Ensure that your ERPNext system is up and running. With both the backend name from 1) and the process name from 2), open your computer's terminal and type `docker ps` to list all running Docker containers. Under the `NAMES` column, look for a name that starts with this: `<PROCESS NAME>-<SERVICE NAME>`. The container name that starts with this name is the backend container.
 
-   For example, the default process name is `erpnext-lgm` and the default process name is `erpnext-python`, so combined they are `erpnext-lgm-erpnext-python`. The only container that starts with this name is `erpnext-lgm-erpnext-python-1`. Thus, `erpnext-lgm-erpnext-python-1` is the name of the backend container.
+    - For example, the default process name is `erpnext-lgm` and the default process name is `erpnext-python`, so combined they are `erpnext-lgm-erpnext-python`. The only container that starts with this name is `erpnext-lgm-erpnext-python-1`. Thus, `erpnext-lgm-erpnext-python-1` is the name of the backend container.
 
 ### Finding the name of the site (Default: `custom-erpnext-nginx`)
 1) Access the backend bash terminal using the method below.
@@ -221,11 +223,11 @@ There are 3 main types of changes, backend changes (.py or config.json files), d
 - Frontend changes -> Normally requires bench build, but first try the following steps, and if one doesn't work, try the next:
     1) Clear the cache by running `ctrl + shift + r` in the web browser
     2) Open the bench console using the method mentioned earlier, then run
-       `frappe.reload_doc("projects", "doctype", "<DOCTYPE_NAME>", force=True)`
+       `frappe.reload_doc("projects", "doctype", "<DOCTYPE_NAME>", force=True)`\
        `frappe.db.commit()`
 
-       For example, to refresh the `ingredients_weighing_table_lgm` Doctype, run:
-       `frappe.reload_doc("projects", "doctype", "ingredients_weighing_table_lgm", force=True)`
+       For example, to refresh the `ingredients_weighing_table_lgm` Doctype, run:\
+       `frappe.reload_doc("projects", "doctype", "ingredients_weighing_table_lgm", force=True)`\
        `frappe.db.commit()`
 
 ## For Developers - Creating your own Docker Image
@@ -302,7 +304,7 @@ When you face `denied: requested access to the resource is denied` when pushing 
 
 ### 5. Start up
 1. The following commands should be executed on the `~/some/path/ERPNext-LGM` directory
-2. `docker-compose -p <project_name> up -d`
+2. `docker compose -p <project_name> up -d`
 3. `docker logs <project_name>_site-creator_1 -f`
 4. After the `site_creator` container exited, open a browser, you can access ERPNext on `localhost:8000` or `127.0.0.1:8000`.
 5. You can push the changes back to this repo (or your own repo if you forked one from this repo).
