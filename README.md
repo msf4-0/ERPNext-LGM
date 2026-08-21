@@ -101,15 +101,15 @@ IMPORTANT: Do not fully follow the Wiki above, as it is based on a version that 
     - Replace `<project_name>` to your preference.
     - For example, `docker compose -p project1 up -d`
 
-6. Monitor the site creation progress by logging into the `<project_name>-site-creator-1` container. To do this step, use this command `docker logs <project_name>-site-creator-1 -f`. The site creation process might take up to 5 minutes - This is normal.
+6. Monitor the site creation progress by logging into the `<project_name>-site-creator-1` container. To do this step, use this command `docker logs <project_name>-site-creator-1 -f`. The site creation process might take up to 5 minutes - This is normal.\
 
-- If the site creator container seems to be stuck in a restarting loop, or is still not ready after a while, consider running `docker compose down` then `docker compose up -d` again. If the error still persists, run `docker compose down -v` instead. IMPORTANT: This will wipe the container's volumes, including any data stored inside the container.
+If the site creator container seems to be stuck in a restarting loop, or is still not ready after a while, consider running `docker compose down` then `docker compose up -d` again. If the error still persists, run `docker compose down -v` instead. IMPORTANT: This will wipe the container's volumes, including any data stored inside the container.
 
-9. After the `<project_name>-site-creator-1` container display `Scheduler is disabled`, login to `<project_name>-erpnext-python-1` container. Use `docker exec -it --user root <project_name>-erpnext-python-1 /bin/bash` to login into this container as a root user.
+8. After the `<project_name>-site-creator-1` container display `Scheduler is disabled`, login to `<project_name>-erpnext-python-1` container. Use `docker exec -it --user root <project_name>-erpnext-python-1 /bin/bash` to login into this container as a root user.
     
-10. Once you login in into `<project_name>-erpnext-python-1` container, by default, you will be in the `~:/home/frappe/frappe-bench/sites` directory. Navigate out to `~:/home/frappe/frappe-bench` directory by typing `cd ..`.
+9. Once you login in into `<project_name>-erpnext-python-1` container, by default, you will be in the `~:/home/frappe/frappe-bench/sites` directory. Navigate out to `~:/home/frappe/frappe-bench` directory by typing `cd ..`.
 
-11. Now, apply the new changes in Frepple app by running this command `bench --site <site_name> migrate`.
+10. Now, apply the new changes in Frepple app by running this command `bench --site <site_name> migrate`.
     
     Note:
     - Replace `<site_name>` to the same name as specified in the .env file. Refer to step 3 and 4.
