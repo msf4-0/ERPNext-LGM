@@ -129,6 +129,8 @@ IMPORTANT: Do not fully follow the Wiki above, as it is based on a version that 
     - Username: `Administrator`
     - Password: `admin`
 
+13. To access the custom LGM doctypes, make sure your browser is first open at the `/desk` page. For example, if the URL is `http://localhost:8000`, go to `http://localhost:8000/desk`. Then, select the "Projects" section, and open the Doctypes under "Lembaga Getah Malaysia". These menu options can be seen in the images at the top of this repo. Do note that you might need to manually go back to the desk page when opening the page sometimes, so this please remember this step for future reference.
+
 ### 6. Stopping Docker Containers
 1. To stop all the docker containers related to your `<project-name`> project:
     - Open a Powershell terminal, navigate to `ERPNext-LGM` folder.
